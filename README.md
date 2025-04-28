@@ -28,8 +28,8 @@ Chào mừng bạn đến với **HNCG** — nơi mọi khoảnh khắc kết n�
 1. Clone dự án:
 
    ```bash
-   git clone https://github.com/yourusername/HNCG-Party-Live-Chat.git
-   cd HNCG-Party-Live-Chat
+   git clone https://github.com/peggy2402/hncg-party-app.git
+   cd hncg-party-app
    ```
 
 2. Cài đặt dependencies:
