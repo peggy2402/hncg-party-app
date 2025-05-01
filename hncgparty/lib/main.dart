@@ -15,8 +15,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return MaterialApp(
+    //   title: 'HNCG',
+    //   debugShowCheckedModeBanner: false,
+    //   theme: AppTheme.lightTheme, // Sử dụng light theme
+    //   darkTheme: AppTheme.darkTheme, // Dark theme (tuỳ chọn)
+    //   themeMode: ThemeMode.system, // Tự động theo hệ thống
+    //   home: const LoginPage(),
+    //   onGenerateRoute: AppRouter.onGenerateRoute,
+    //   navigatorKey: GetIt.I<GlobalKey<NavigatorState>>(),
+    // );
+    //
     return MaterialApp(
-      title: 'HNCG',
+      title: 'Nguyen ',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme, // Sử dụng light theme
       darkTheme: AppTheme.darkTheme, // Dark theme (tuỳ chọn)
