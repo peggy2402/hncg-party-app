@@ -1,70 +1,108 @@
 import 'package:dio/dio.dart';
-// import 'package:flutter/foundation.dart';
-import 'package:hncg_app/core/constants/constants.dart';
+import 'package:hncgparty/core/errors/failure.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DioClient {
-  final Dio _dio;
+  final Dio _dio = Dio();
 
-  DioClient(this._dio) {
-    _dio
-      ..options.baseUrl = AppConstants.baseUrl
-      ..options.connectTimeout = const Duration(seconds: 30)
-      ..options.receiveTimeout = const Duration(seconds: 30)
-      ..options.responseType = ResponseType.json
-      ..interceptors.add(LogInterceptor(
-        request: true,
-        requestHeader: true,
-        requestBody: true,
-        responseHeader: true,
-        responseBody: true,
-      ));
+  DioClient() {
+    _dio.options.baseUrl = 'http://10.0.2.2:3000/api/v1'; // Android emulator -> localhost
+    _dio.options.connectTimeout = const Duration(seconds: 30);
+    _dio.options.receiveTimeout = const Duration(seconds: 30);
+    _dio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      responseBody: true,
+    ));
+    _addAuthInterceptor();
   }
-
-  Future<Response> get(
-    String url, {
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final Response response = await _dio.get(
-        url,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response;
-    } catch (e) {
-      rethrow;
-    }
-  }
-
+  // Thêm phương thức post public
   Future<Response> post(
-    String url, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
+      String path, {
+        dynamic data,
+        Map<String, dynamic>? queryParameters,
+      }) async {
     try {
-      final Response response = await _dio.post(
-        url,
+      return await _dio.post(
+        path,
         data: data,
         queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
       );
-      return response;
-    } catch (e) {
-      rethrow;
+    } on DioException catch (e) {
+      throw Failure(
+        e.response?.data['message'] ?? 'Network error',
+        code: e.response?.statusCode,
+      );
     }
   }
 
-  // Add other methods (put, delete, etc.) as needed
+  // Thêm interceptor để tự động gắn JWT token
+  void _addAuthInterceptor() {
+    _dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        final prefs = await SharedPreferences.getInstance();
+        final token = prefs.getString('jwt_token');
+        if (token != null) {
+          options.headers['Authorization'] = 'Bearer $token';
+        }
+        return handler.next(options);
+      },
+      onError: (DioException e, handler) async {
+        if (e.response?.statusCode == 401) {
+          // Xử lý refresh token hoặc đăng xuất
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.remove('jwt_token');
+        }
+        return handler.next(e);
+      },
+    ));
+  }
+
+  // Helper method xử lý response thống nhất
+  Future<T> _handleResponse<T>(Future<Response> apiCall) async {
+    try {
+      final response = await apiCall;
+      final data = response.data['data'];
+
+      if (data is! T) {
+        throw Failure('Invalid response type: expected $T, got ${data.runtimeType}');
+      }
+
+      return data as T;
+    } on DioException catch (e) {
+      throw Failure(
+        e.response?.data['message'] ?? 'Network error',
+        code: e.response?.statusCode,
+      );
+    }
+  }
+
+  // ------------ API Methods ------------
+  Future<Map<String, dynamic>> login({
+    required String email,
+    required String password,
+  }) async {
+    return _handleResponse<Map<String, dynamic>>(
+      _dio.post('/auth/login', data: {'email': email, 'password': password}),
+    );
+  }
+
+  Future<Map<String, dynamic>> register({
+    required String username,
+    required String email,
+    required String password,
+  }) async {
+    return _handleResponse<Map<String, dynamic>>(
+      _dio.post('/auth/register', data: {
+        'username': username,
+        'email': email,
+        'password': password,
+      }),
+    );
+  }
+
+  Future<Map<String, dynamic>> getProfile() async {
+    return _handleResponse<Map<String, dynamic>>(
+      _dio.get('/auth/profile'),
+    );
+  }
 }

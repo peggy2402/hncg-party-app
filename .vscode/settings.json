@@ -4,5 +4,6 @@
     "dart.flutterGenerateLocalizationsOnSave": "all",
     "dart.flutterHotReloadOnSave": "all",
     "dart.hotReloadOnSave": "all",
-    "explorer.compactFolders": false
+    "explorer.compactFolders": false,
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
