@@ -6,7 +6,7 @@ class DioClient {
   final Dio _dio = Dio();
 
   DioClient() {
-    _dio.options.baseUrl = 'http://10.0.2.2:3000/api/v1'; // Android emulator -> localhost
+    _dio.options.baseUrl = 'http://192.168.42.150:3000/api/v1'; // Android emulator -> localhost
     _dio.options.connectTimeout = const Duration(seconds: 30);
     _dio.options.receiveTimeout = const Duration(seconds: 30);
     _dio.interceptors.add(LogInterceptor(

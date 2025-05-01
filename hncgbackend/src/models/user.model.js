@@ -9,10 +9,10 @@ const login = async (email, password) => {
   `;
   const { rows } = await pool.query(query, [email]);
   
-  if (rows.length === 0) throw new Error('User not found');
+  if (rows.length === 0) throw new Error('Không tìm thấy người dùng');
   
   const isValid = await bcrypt.compare(password, rows[0].password);
-  if (!isValid) throw new Error('Invalid password');
+  if (!isValid) throw new Error('Mật khẩu không hợp lệ');
 
   return {
     id: rows[0].id,
