@@ -3,5 +3,6 @@
     "files.autoSaveDelay": 500,
     "dart.flutterGenerateLocalizationsOnSave": "all",
     "dart.flutterHotReloadOnSave": "all",
-    "dart.hotReloadOnSave": "all"
+    "dart.hotReloadOnSave": "all",
+    "explorer.compactFolders": false
 }
