@@ -33,13 +33,13 @@ exports.login = async (req, res) => {
     // 2. Kiểm tra user tồn tại
     const user = await getUserByEmail(email);
     if (!user) {
-      return errorResponse(res, 'Invalid credentials', 401);
+      return errorResponse(res, 'Thông tin đăng nhập không hợp lệ', 401);
     }
 
     // 3. Verify password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return errorResponse(res, 'Invalid credentials', 401);
+      return errorResponse(res, 'Thông tin đăng nhập không hợp lệ', 401);
     }
 
     // 4. Tạo token
@@ -60,11 +60,11 @@ exports.login = async (req, res) => {
         avatar_url: user.avatar_url
       },
       token
-    }, 'Login successful');
+    }, 'Đăng nhập thành công', 200);
 
   } catch (err) {
-    console.error('Login error:', err);
-    return errorResponse(res, 'Internal server error', 500);
+    console.error('Lỗi đăng nhập:', err);
+    return errorResponse(res, 'Lỗi máy chủ nội bộ', 500);
   }
 };
 

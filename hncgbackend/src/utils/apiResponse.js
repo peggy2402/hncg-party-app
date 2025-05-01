@@ -9,7 +9,7 @@
  * @param {string} message - Optional success message
  * @param {number} statusCode - HTTP status code (default: 200)
  */
-const successResponse = (res, data = null, message = 'Success', statusCode = 200) => {
+const successResponse = (res, data = null, message = 'Thành công', statusCode = 200) => {
     return res.status(statusCode).json({
       success: true,
       message,
@@ -25,7 +25,7 @@ const successResponse = (res, data = null, message = 'Success', statusCode = 200
    * @param {number} statusCode - HTTP status code (default: 400)
    * @param {*} errors - Additional error details
    */
-  const errorResponse = (res, message = 'An error occurred', statusCode = 400, errors = null) => {
+  const errorResponse = (res, message = 'Đã xảy ra lỗi', statusCode = 400, errors = null) => {
     return res.status(statusCode).json({
       success: false,
       message,
@@ -42,7 +42,7 @@ const successResponse = (res, data = null, message = 'Success', statusCode = 200
   const validationErrorResponse = (res, errors) => {
     return res.status(422).json({
       success: false,
-      message: 'Validation failed',
+      message: 'Xác thực không thành công',
       errors: errors.array ? errors.array() : errors,
       timestamp: new Date().toISOString()
     });
@@ -53,7 +53,7 @@ const successResponse = (res, data = null, message = 'Success', statusCode = 200
    * @param {*} res - Express response object
    * @param {string} message - Optional custom message
    */
-  const notFoundResponse = (res, message = 'Resource not found') => {
+  const notFoundResponse = (res, message = 'Không tìm thấy tài nguyên') => {
     return res.status(404).json({
       success: false,
       message,
@@ -66,7 +66,7 @@ const successResponse = (res, data = null, message = 'Success', statusCode = 200
    * @param {*} res - Express response object
    * @param {string} message - Optional custom message
    */
-  const unauthorizedResponse = (res, message = 'Unauthorized') => {
+  const unauthorizedResponse = (res, message = 'Không được phép') => {
     return res.status(401).json({
       success: false,
       message,
