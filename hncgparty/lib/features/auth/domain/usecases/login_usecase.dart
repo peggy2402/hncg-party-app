@@ -1,23 +1,14 @@
-import 'package:hncg_app/core/utils/typedef.dart';
-import 'package:hncg_app/features/auth/domain/entities/user.dart';
-import 'package:hncg_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:hncgparty/core/errors/failure.dart';
+import 'package:hncgparty/features/auth/domain/entities/user_entity.dart';
+import 'package:hncgparty/features/auth/domain/repositories/auth_repository.dart';
 
 class LoginUseCase {
-  final AuthRepository _repository;
+  final AuthRepository repository;
 
-  LoginUseCase(this._repository);
+  const LoginUseCase({required this.repository});
 
-  ResultFuture<User> call(LoginParams params) async {
-    return await _repository.login(
-      email: params.email,
-      password: params.password,
-    );
+  Future<Either<Failure, UserEntity>> call(String email, String password) {
+    return repository.login(email, password);
   }
-}
-
-class LoginParams {
-  final String email;
-  final String password;
-
-  LoginParams({required this.email, required this.password});
 }

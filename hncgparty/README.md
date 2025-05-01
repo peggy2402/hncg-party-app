@@ -1,6 +1,6 @@
 # hncgparty
 
-A new Flutter project.
+This is HNCG party app
 
 ## Getting Started
 

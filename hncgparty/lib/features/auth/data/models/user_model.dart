@@ -1,37 +1,34 @@
-import 'package:hncg_app/features/auth/domain/entities/user.dart';
+import 'package:hncgparty/features/auth/domain/entities/user_entity.dart';
 
 class UserModel {
-  final String id;
+  final int id;
+  final String username;
   final String email;
-  final String? username;
   final String? avatarUrl;
-  final String? token;
 
   UserModel({
     required this.id,
+    required this.username,
     required this.email,
-    this.username,
     this.avatarUrl,
-    this.token,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json['user']?['id'] ?? '', // Xử lý null safety
-      email: json['user']?['email'] ?? '',
-      username: json['user']?['username'],
-      avatarUrl: json['user']?['avatar_url'],
-      token: json['token'],
+      id: json['id'],
+      username: json['username'],
+      email: json['email'],
+      avatarUrl: json['avatar_url'],
     );
   }
 
-  User toEntity() {
-    return User(
+  // Thêm phương thức chuyển đổi sang Entity
+  UserEntity toEntity() {
+    return UserEntity(
       id: id,
-      email: email,
       username: username,
+      email: email,
       avatarUrl: avatarUrl,
-      token: token,
     );
   }
 }
