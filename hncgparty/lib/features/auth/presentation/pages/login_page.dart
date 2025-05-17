@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/auth_bloc.dart';
 import 'package:hncgparty/features/auth/presentation/blocs/auth_state.dart';
+import 'package:hncgparty/features/auth/presentation/pages/sigin_page.dart';
 class LoginPage extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -9,8 +10,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
-      body: BlocConsumer<AuthBloc, AuthState>(
+      body:
+      BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -27,34 +28,195 @@ class LoginPage extends StatelessWidget {
           }
           return _buildLoginForm(context);
         },
-      ),
+      )
     );
   }
 
   Widget _buildLoginForm(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return SingleChildScrollView(
+      padding: EdgeInsets.only( // khi nhấp vào bàn phím sẽ tự động di chuyển lên
+        left: 16.0,
+        right: 16.0,
+        top: 32.0,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 16.0,
+      ),
       child: Column(
         children: [
-          TextField(
-            controller: _emailController,
-            decoration: InputDecoration(labelText: 'Email'),
+          SizedBox(height: 50,),
+          Center(
+            child: Image.asset(
+              'assets/images/bg-group-fb-removebg-preview.png',
+              width: 200,
+              height: 200,
+              fit: BoxFit.cover,
+            ),
           ),
-          TextField(
+          SizedBox(height: 50,),
+          TextFormField(
+            controller: _emailController,
+            decoration: InputDecoration(labelText: 'Email'
+                                        ,border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                                         prefixIcon: Icon(Icons.email)
+            ),
+          ),
+          SizedBox(height: 30),
+          TextFormField(
             controller: _passwordController,
             obscureText: true,
-            decoration: InputDecoration(labelText: 'Password'),
+            decoration: InputDecoration(labelText: 'Password',
+                                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                                        prefixIcon: Icon(Icons.password)
+            ),
           ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () => _handleLogin(context),
-            child: Text('Login'),
+          SizedBox(height: 40),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () =>_handleLogin(context),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white, 
+                  backgroundColor: Color(0xFF487A74),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+                ),
+                child: Text('Login'),
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>SiginPage()),
+                    );
+                  },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white, 
+                  backgroundColor: Color(0xFF487A74),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+                ),
+                child: Text('Sigin'),
+              )
+            ]
           ),
+          SizedBox(height: 40,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  height: 2.0,
+                  color: Color(0xFF212121),
+                ),
+              ),
+              SizedBox(width: 10),
+              Text(
+                'Log in another way',
+                style: TextStyle(
+                  color: Color(0xFF212121),
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Time new roman',
+                  letterSpacing: 1.2,
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: Container(
+                  height: 2.0,
+                  color: Color(0xFF212121),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  // Xử lý đăng nhập ở đây
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(0.1),
+                  backgroundColor: Colors.white,
+                ),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.black87,
+                      width: 1,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/logo/google_logo.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Xử lý đăng nhập ở đây
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(0.1),
+                  backgroundColor: Colors.white,
+                ),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.black87,
+                      width: 1,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/logo/facebook_logo.webp',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Xử lý đăng nhập ở đây
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(0.1),
+                  backgroundColor: Colors.white,
+                ),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.black87,
+                      width: 1,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/logo/tiktok_logo.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              )
+            ],
+          )
         ],
       ),
     );
   }
-
   void _handleLogin(BuildContext context) {
     context.read<AuthBloc>().add(
       LoginRequested(
