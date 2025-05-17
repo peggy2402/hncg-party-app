@@ -1,0 +1,15 @@
+flavors:
+  development:
+    app:
+      name: "HNCG Dev"
+    android:
+      applicationId: "com.hncg.dev"
+    ios:
+      bundleId: "com.hncg.dev"
+  production:
+    app:
+      name: "HNCG"
+    android:
+      applicationId: "com.hncg"
+    ios:
+      bundleId: "com.hncg"

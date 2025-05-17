@@ -7,3 +7,6 @@ class Failure {
   @override
   String toString() => 'Failure(message: $message, code: $code)';
 }
+class ServerFailure extends Failure {
+  ServerFailure(String message, {int? code}) : super(message, code: code);
+}

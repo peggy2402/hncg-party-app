@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:hncgparty/core/errors/failure.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import '../config/env.dart';
 class DioClient {
   final Dio _dio = Dio();
 
   DioClient() {
-    _dio.options.baseUrl = 'http://192.168.1.5:3000/api/v1'; // Android emulator -> localhost
+    _dio.options.baseUrl = AppEnv.baseUrl; // Android emulator -> localhost
     _dio.options.connectTimeout = const Duration(seconds: 30);
     _dio.options.receiveTimeout = const Duration(seconds: 30);
     _dio.interceptors.add(LogInterceptor(
@@ -29,7 +29,7 @@ class DioClient {
       );
     } on DioException catch (e) {
       throw Failure(
-        e.response?.data['message'] ?? 'Network error',
+        e.response?.data['message'] ?? 'Lỗi mạng cần phải config mạng cục bộ',
         code: e.response?.statusCode,
       );
     }
@@ -70,7 +70,7 @@ class DioClient {
       return data as T;
     } on DioException catch (e) {
       throw Failure(
-        e.response?.data['message'] ?? 'Network error',
+        e.response?.data['message'] ?? 'Lỗi mạng cần phải config mạng cục bộ',
         code: e.response?.statusCode,
       );
     }
@@ -78,11 +78,11 @@ class DioClient {
 
   // ------------ API Methods ------------
   Future<Map<String, dynamic>> login({
-    required String email,
+    required String identifier,
     required String password,
   }) async {
     return _handleResponse<Map<String, dynamic>>(
-      _dio.post('/auth/login', data: {'email': email, 'password': password}),
+      _dio.post('/api/v1/auth/login', data: {'identifier': identifier, 'password': password}),
     );
   }
 
@@ -92,7 +92,7 @@ class DioClient {
     required String password,
   }) async {
     return _handleResponse<Map<String, dynamic>>(
-      _dio.post('/auth/register', data: {
+      _dio.post('/api/v1/auth/register', data: {
         'username': username,
         'email': email,
         'password': password,
@@ -102,7 +102,7 @@ class DioClient {
 
   Future<Map<String, dynamic>> getProfile() async {
     return _handleResponse<Map<String, dynamic>>(
-      _dio.get('/auth/profile'),
+      _dio.get('/api/v1/auth/profile'),
     );
   }
 }

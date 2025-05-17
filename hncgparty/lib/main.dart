@@ -3,22 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hncgparty/features/auth/presentation/blocs/auth_bloc.dart';
 import 'package:hncgparty/features/auth/presentation/pages/login_page.dart';
 import 'package:hncgparty/features/auth/presentation/pages/sigin_page.dart';
+import 'package:hncgparty/features/auth/presentation/pages/home_page.dart'; // Thêm import
 import 'package:hncgparty/injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await di.init(); // Khởi tạo dependency injection
+  await di.init();
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(
-          create: (context) => di.sl<AuthBloc>(), // ✅ Đúng Bloc
+          create: (context) => di.sl<AuthBloc>(),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -30,8 +32,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(), // ✅ Không cần thêm BlocProvider ở đây nữa
+      // Định nghĩa routes thay vì dùng home
+      routes: {
+        '/': (context) => LoginPage(),
+        '/signup': (context) => SiginPage(),
+        '/home': (context) => const HomePage(), // Thêm route cho HomePage
+      },
+      initialRoute: '/',
+      // Thêm navigation observer để debug (tuỳ chọn)
+      navigatorObservers: [HeroController()],
     );
   }
 }
-

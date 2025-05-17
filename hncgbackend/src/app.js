@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth.routes');
@@ -8,8 +9,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/api/v1/auth', authRoutes);
+// Routes - Đảm bảo base path khớp với client
+app.use('/api/v1/auth', authRoutes); 
 
 // Health check
 app.get('/', (req, res) => {
