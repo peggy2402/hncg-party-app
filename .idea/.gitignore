@@ -1,4 +1,45 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+# File cấu hình môi trường
 .env
+*.env*
+!.env.example
+
+# File chứng chỉ
+*.key
+*.p12
+*.cer
+*.crt
+*.pem
+
+# Firebase config
+GoogleService-Info.plist
+google-services.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build & dependencies
+build/
+dist/
+node_modules/
+.dart_tool/
+.flutter-plugins
+.packages
+
+# Logs và cache
+*.log
+logs/
+.DS_Store
+
+# Database
+*.db
+*.sqlite
+*.sql
+
+# Docker
+docker-compose.override.yml

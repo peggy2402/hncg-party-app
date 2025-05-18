@@ -1,0 +1,42 @@
+version: '3.8'  # Có thể xóa dòng này nếu dùng phiên bản mới
+
+services:
+  backend:
+    build: ./hncgbackend
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=host.docker.internal
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=hncg123
+      - DB_NAME=socialapp
+      - JWT_SECRET=29567b323bd98cce0a3a5be00bb787458136736e7961a805e87120f567e3b57c
+    ports:
+      - "3000:3000"
+    networks:
+      - my-network
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    depends_on:
+      - backend
+    command: http backend:3000
+    environment:
+      - NGROK_AUTHTOKEN=2xEgv3VZrnEz88K7LYCzoPBlw99_4mCSLPYr4CvTTMEugGMr2
+    ports:
+      - "4040:4040"
+    networks:
+      - my-network
+  flutter:
+    image: cirrusci/flutter:latest
+    volumes:
+      - ./hncgparty:/app
+    working_dir: /app
+    command: bash -c "sleep 15 && flutter run" # Đợi 15s cho ngrok khởi động
+    depends_on:
+      - ngrok
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge

@@ -38,20 +38,28 @@ Chào mừng bạn đến với **HNCG** — nơi mọi khoảnh khắc kết n�
    flutter pub get
    ```
 
-3. Thiết lập Firebase:
+3. Thiết lập .ENV:
 
-   - Thêm `google-services.json` (Android) và `GoogleService-Info.plist` (iOS) vào project.
-   - Kết nối Firebase Authentication, Firestore, và Storage.
+   ```bash
+   cp .env.example .env
+   ```
+   `DB_HOST=localhost
+    DB_PORT=5432
+    DB_NAME=socialapp
+    DB_USER=postgres
+    DB_PASSWORD=your_password
+    PORT=3000
+    NODE_ENV=development`
 
 4. Chạy ứng dụng:
 
    ```bash
-   flutter run
+   .\start_all.ps1
    ```
 
 ## 📱 Giao diện mẫu
 
-> (Bạn có thể thêm vài ảnh chụp màn hình đẹp ở đây)
+> 
 
 ## 🔥 Tầm nhìn
 
@@ -68,5 +76,5 @@ Bạn có ý tưởng mới? Phát hiện bug? Đừng ngần ngại:
 
 ## 📩 Liên hệ
 
-- Email: support@hncgapp.com
-- Website: [hncgapp.com](https://hncgapp.com)
+- Email: support@hncg.site
+- Website: [hncg.site](https://hncg.site)

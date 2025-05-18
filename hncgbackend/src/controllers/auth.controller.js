@@ -1,6 +1,6 @@
 const { successResponse, errorResponse, validationErrorResponse } = require('../utils/apiResponse');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const pool = require('../config/db');
 const { validationResult } = require('express-validator');
 
