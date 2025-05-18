@@ -39,17 +39,20 @@ Chào mừng bạn đến với **HNCG** — nơi mọi khoảnh khắc kết n�
    ```
 
 3. Thiết lập .ENV:
-
+   - Gõ lệnh copy file
    ```bash
    cp .env.example .env
    ```
-   `DB_HOST=localhost
+   - Thiết lập file .env và docker_compose.yml
+   ```bash
+    DB_HOST=localhost
     DB_PORT=5432
     DB_NAME=socialapp
     DB_USER=postgres
     DB_PASSWORD=your_password
     PORT=3000
-    NODE_ENV=development`
+    NODE_ENV=development
+   ```
 
 4. Chạy ứng dụng:
 
