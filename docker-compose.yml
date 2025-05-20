@@ -1,5 +1,3 @@
-version: '3.8'  # Có thể xóa dòng này nếu dùng phiên bản mới
-
 services:
   backend:
     build: ./hncgbackend
