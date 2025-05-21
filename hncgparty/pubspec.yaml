@@ -59,15 +59,11 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/bg-group-fb-removebg-preview.png
+    - assets/images/logo-hncg-party-ver2.png
+    - assets/images/bg-form-login.png
+    - assets/images/start-party.png
     - assets/logo/tiktok_logo.png
     - assets/logo/facebook_logo.webp
     - assets/logo/google_logo.png
@@ -99,4 +95,7 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/LOGO_MesS_HNCG.png" # Đường dẫn đến ảnh icon của bạn
+  image_path:
+   - "assets/images/bg-form-login.png"
+   - "assets/images/logo-hncg-party-ver2.png"
+   - "assets/images/start-party.png"
