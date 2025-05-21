@@ -925,12 +925,8 @@ COPY public.user_gifts (id, sender_id, receiver_id, gift_id, livestream_id, quan
 --
 
 COPY public.users (id, username, email, password, avatar_url, bio, gender, birthday, is_verified, role, status, created_at, updated_at) FROM stdin;
-1	john_doe	john.doe@example.com	hashed_password_123	\N	\N	\N	\N	f	user	active	2025-05-17 22:30:31.371836	2025-05-17 22:30:31.371836
-2	jane_smith	jane.smith@example.com	securepass_456	https://example.com/avatars/jane.jpg	Digital artist and cat lover 🐱	Female	1995-08-15	f	user	active	2025-05-17 22:30:31.371836	2025-05-17 22:30:31.371836
-3	tech_guy	tech@geekworld.com	techpass_789	\N	\N	\N	\N	t	user	active	2025-05-17 22:30:31.371836	2025-05-17 22:30:31.371836
-4	admin_alex	admin@hncg.com	adminpass_secure	\N	\N	\N	\N	f	admin	active	2025-05-17 22:30:31.371836	2025-05-17 22:30:31.371836
-5	inactive_user	inactive@test.com	temp_pass_123	\N	\N	\N	\N	f	user	suspended	2025-05-17 22:30:31.371836	2025-05-17 22:30:31.371836
 6	test	tranvanchien24022003@gmail.com	$2b$10$5qh1Y6uJTgLU.D.86aTu/.zkfDLNaEaSThR50G608FhAZJpSzlqGm	\N	\N	\N	\N	f	user	active	2025-05-17 23:19:46.431217	2025-05-17 23:19:46.431217
+7	nguyen	lethiennguyen@gmail.com	$2a$10$iFNxVvL9lCJSJJQsY6oGo.p19QRYNLnX3w0tO3d.e3B1PSNIobCQ.	\N	\N	\N	\N	f	user	active	2025-05-21 15:20:53.242948	2025-05-21 15:20:53.242948
 \.
 
 
@@ -1050,7 +1046,7 @@ SELECT pg_catalog.setval('public.user_gifts_id_seq', 1, false);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 6, true);
+SELECT pg_catalog.setval('public.users_id_seq', 7, true);
 
 
 --
