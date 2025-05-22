@@ -63,9 +63,12 @@ Chào mừng bạn đến với **HNCG** — nơi mọi khoảnh khắc kết n�
 ## 📱 Giao diện mẫu
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9450988f-17c9-4d48-a847-ec5440ebfbc9" width="200" alt="Giao diện 1" />
-  <img src="https://github.com/user-attachments/assets/8376e5c4-0e48-408e-875d-f094bc2fece7" width="200" alt="Giao diện 2" />
-  <img src="https://github.com/user-attachments/assets/e46153ed-f211-4d7e-8f1f-cde6e4873b99" width="200" alt="Giao diện 3" />
+  <img src="https://github.com/user-attachments/assets/c8fe40c1-68ba-44c1-9a5e-e84620e13e83" width="200" alt="Giao diện loading" />
+  <img src="https://github.com/user-attachments/assets/df8c5e3e-bfa5-4ddb-bc8b-4818914a9c49" width="200" alt="Giao diện login" />
+  <img src="https://github.com/user-attachments/assets/f85e9a00-0dba-4197-a4f0-6d21e3f5eb38" width="200" alt="Giao diện sign in" />
+  <img src="https://github.com/user-attachments/assets/9627dae2-12aa-4832-9ed2-81bbaa47cc0b" width="200" alt="Giao diện otp verify" />
+  <img src="https://github.com/user-attachments/assets/df0b0fdd-14c6-4ce2-84e2-d576f53098bd" width="200" alt="Giao diện forgot password" />
+  <img src="https://github.com/user-attachments/assets/1674be99-f033-4f80-8230-d8d674d33830" width="200" alt="Giao diện confirm new password" />
 </p>
 
 ## 🔥 Tầm nhìn
