@@ -43,6 +43,7 @@ dependencies:
   dartz: ^0.10.1
   flutter_flavorizr: ^2.1.2
   lottie: ^3.3.1
+  flutter_launcher_icons: ^0.14.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -97,8 +98,4 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path:
-   - "assets/images/bg-form-login.png"
-   - "assets/images/logo-hncg-party-ver2.png"
-   - "assets/images/start-party.png"
-   - "assets/animations/loading_hncg_party_ver6.json"
+  image_path: "assets/images/logo-hncg-party-ver2.png"
