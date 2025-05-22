@@ -1,3 +1,3 @@
 abstract class Env {
-  static const String baseUrl = 'https://73ee-117-2-113-196.ngrok-free.app';
+  static const String baseUrl = 'https://35ca-14-235-162-251.ngrok-free.app';
 }

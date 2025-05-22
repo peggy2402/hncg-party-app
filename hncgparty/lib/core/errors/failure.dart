@@ -5,8 +5,8 @@ class Failure {
   Failure(this.message, {this.code});
 
   @override
-  String toString() => 'Failure(message: $message, code: $code)';
+  String toString() => 'Error: $message, code: $code';
 }
 class ServerFailure extends Failure {
-  ServerFailure(String message, {int? code}) : super(message, code: code);
+  ServerFailure(super.message, {super.code});
 }

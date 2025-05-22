@@ -58,194 +58,196 @@ class _LoginPageState extends State<LoginPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // HNCG Party Logo at the top
-                Image.asset(
-                  'assets/images/logo-hncg-party-ver2.png',
-                  height: 300,
-                  width: 300,
-                ),
-                SizedBox(height: 10),
-
-                // Login Form Card
-                Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFFC0E2), // Light pink background
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 6
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 10,
-                        offset: Offset(0, 5),
-                      ),
-                    ],
+      child: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // HNCG Party Logo at the top
+                  Image.asset(
+                    'assets/images/logo-hncg-party-ver2.png',
+                    height: 200,
+                    width: 200,
                   ),
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      // START PARTY text
-                      Image.asset(
-                        'assets/images/start-party.png',
-                        width: 400,
-                      ),
-                      SizedBox(height: 30),
+                  SizedBox(height: 10),
 
-                      // Username Field
-                      Container(
-                        width: 300,
-                        decoration: BoxDecoration(
+                  // Login Form Card
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFC0E2), // Light pink background
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(50),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 4,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: TextField(
-                          controller: _identifierController,
-                          decoration: InputDecoration(
-                            hintText: 'Username or Email',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            prefixIcon: Icon(
-                              Icons.person,
-                              color: Color(0xFF3D165B),
-                            ),
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(vertical: 15),
-                          ),
-                        ),
+                          width: 6
                       ),
-                      SizedBox(height: 20),
-
-                      // Password Field
-                      Container(
-                        width: 300,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 4,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 10,
+                          offset: Offset(0, 5),
                         ),
-                        child: TextField(
-                          controller: _passwordController,
-                          obscureText: !_isPasswordVisible,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            prefixIcon: Icon(
-                              Icons.lock,
-                              color: Color(0xFF3D165B),
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                                color: Color(0xFF3D165B),
+                      ],
+                    ),
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        // START PARTY text
+                        Image.asset(
+                          'assets/images/start-party.png',
+                          width: 400,
+                        ),
+                        SizedBox(height: 30),
+
+                        // Username Field
+                        Container(
+                          width: 300,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  _isPasswordVisible = !_isPasswordVisible;
-                                });
-                              },
-                            ),
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(vertical: 15),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 30),
-
-                      // Login Button
-                      Container(
-                        width: 300,
-                        height: 55,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0xFF3D165B),
-                              Color(0xFF8B39A9),
                             ],
                           ),
-                        ),
-                        child: ElevatedButton(
-                          onPressed: () => _handleLogin(context),
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.transparent,
-                            shadowColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                          ),
-                          child: Text(
-                            'ĐĂNG NHẬP',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-
-                      // Forgot Password
-                      TextButton(
-                        onPressed: () => Navigator.pushNamed(context, '/forgot_password'),
-                        child: Text(
-                          'Bạn quên mật khẩu ư?',
-                          style: TextStyle(
-                            color: Color(0xFF3D165B),
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-
-                      // Register Link
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Bạn chưa có tài khoản ? ',
-                            style: TextStyle(
-                              color: Color(0xFF3D165B),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(context, '/signin_up'),
-                            child: Text(
-                              'đăng ký',
-                              style: TextStyle(
+                          child: TextField(
+                            controller: _identifierController,
+                            decoration: InputDecoration(
+                              hintText: 'Username or Email',
+                              hintStyle: TextStyle(color: Colors.grey),
+                              prefixIcon: Icon(
+                                Icons.person,
                                 color: Color(0xFF3D165B),
+                              ),
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.symmetric(vertical: 15),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+
+                        // Password Field
+                        Container(
+                          width: 300,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: TextField(
+                            controller: _passwordController,
+                            obscureText: !_isPasswordVisible,
+                            decoration: InputDecoration(
+                              hintText: 'Password',
+                              hintStyle: TextStyle(color: Colors.grey),
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Color(0xFF3D165B),
+                              ),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                  color: Color(0xFF3D165B),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
+                                },
+                              ),
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.symmetric(vertical: 15),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 30),
+
+                        // Login Button
+                        Container(
+                          width: 300,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0xFF3D165B),
+                                Color(0xFF8B39A9),
+                              ],
+                            ),
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () => _handleLogin(context),
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                            ),
+                            child: Text(
+                              'ĐĂNG NHẬP',
+                              style: TextStyle(
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
+                                letterSpacing: 1.5,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        SizedBox(height: 20),
+
+                        // Forgot Password
+                        TextButton(
+                          onPressed: () => Navigator.pushNamed(context, '/forgot_password'),
+                          child: Text(
+                            'Bạn quên mật khẩu ư?',
+                            style: TextStyle(
+                              color: Color(0xFF3D165B),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+
+                        // Register Link
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Bạn chưa có tài khoản ? ',
+                              style: TextStyle(
+                                color: Color(0xFF3D165B),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(context, '/signin_up'),
+                              child: Text(
+                                'đăng ký',
+                                style: TextStyle(
+                                  color: Color(0xFF3D165B),
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
