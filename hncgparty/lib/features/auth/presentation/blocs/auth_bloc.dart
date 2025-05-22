@@ -25,11 +25,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final result = await loginUseCase.call(event.usernameOrEmail, event.password);
     result.fold(
           (failure) => emit(AuthError(failure.message)),
-          (userEntity) => emit(AuthAuthenticated(user: userEntity)),
+          (userEntity) => emit(AuthAuthenticated(user: userEntity, flag: false)),
     );
   }
 
-  // Xử lý đăng ký (thêm phương thức này)
+  // Xử lý đăng ký
   Future<void> _onSignupRequested(
       SignupRequested event,
       Emitter<AuthState> emit,
@@ -42,7 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     result.fold(
           (failure) => emit(AuthError(failure.message)),
-          (userEntity) => emit(AuthAuthenticated(user: userEntity)),
+          (userEntity) => emit(AuthAuthenticated(user: userEntity, flag: true)),
     );
   }
 }
