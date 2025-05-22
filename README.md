@@ -62,10 +62,11 @@ Chào mừng bạn đến với **HNCG** — nơi mọi khoảnh khắc kết n�
 
 ## 📱 Giao diện mẫu
 
-> ![image](https://github.com/user-attachments/assets/9450988f-17c9-4d48-a847-ec5440ebfbc9)
-> 
-> ![image](https://github.com/user-attachments/assets/8376e5c4-0e48-408e-875d-f094bc2fece7)
-> ![image](https://github.com/user-attachments/assets/e46153ed-f211-4d7e-8f1f-cde6e4873b99)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9450988f-17c9-4d48-a847-ec5440ebfbc9" width="200" alt="Giao diện 1" />
+  <img src="https://github.com/user-attachments/assets/8376e5c4-0e48-408e-875d-f094bc2fece7" width="200" alt="Giao diện 2" />
+  <img src="https://github.com/user-attachments/assets/e46153ed-f211-4d7e-8f1f-cde6e4873b99" width="200" alt="Giao diện 3" />
+</p>
 
 ## 🔥 Tầm nhìn
 
