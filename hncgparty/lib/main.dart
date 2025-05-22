@@ -39,8 +39,8 @@ class MyApp extends StatelessWidget {
       // Định nghĩa routes thay vì dùng home
       routes: {
         'splash': (context) => SplashScreen(),
-        '/': (context) => LoginPage(),
         '/signin_up': (context) => SignInPage(),
+        '/': (context) => LoginPage(),
         '/home': (context) => const HomePage(),
         '/forgot_password': (context) => const ForgotPassword(),
       },
