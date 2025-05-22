@@ -69,6 +69,7 @@ Chào mừng bạn đến với **HNCG** — nơi mọi khoảnh khắc kết n�
   <img src="https://github.com/user-attachments/assets/9627dae2-12aa-4832-9ed2-81bbaa47cc0b" width="200" alt="Giao diện otp verify" />
   <img src="https://github.com/user-attachments/assets/df0b0fdd-14c6-4ce2-84e2-d576f53098bd" width="200" alt="Giao diện forgot password" />
   <img src="https://github.com/user-attachments/assets/1674be99-f033-4f80-8230-d8d674d33830" width="200" alt="Giao diện confirm new password" />
+  <img src="https://github.com/user-attachments/assets/5c88164d-1fdf-4a53-835a-ee834a4d03ad" width="200" alt="Giao diện home" />
 </p>
 
 ## 🔥 Tầm nhìn
