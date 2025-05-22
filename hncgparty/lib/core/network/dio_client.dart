@@ -67,7 +67,7 @@ class DioClient {
         throw Failure('Invalid response type: expected $T, got ${data.runtimeType}');
       }
 
-      return data as T;
+      return data;
     } on DioException catch (e) {
       throw Failure(
         e.response?.data['message'] ?? 'Lỗi mạng cần phải config mạng cục bộ',

@@ -3,28 +3,17 @@ import 'package:hncgparty/features/auth/domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
   UserModel({
-    required int id,
-    required String username,
-    required String email,
-    String? avatarUrl,
-    String? bio,
-    String? gender,
-    DateTime? birthday,
-    bool isVerified = false,
-    String role = 'user',
-    String status = 'active',
-  }) : super(
-    id: id,
-    username: username,
-    email: email,
-    avatarUrl: avatarUrl,
-    bio: bio,
-    gender: gender,
-    birthday: birthday,
-    isVerified: isVerified,
-    role: role,
-    status: status,
-  );
+    required super.id,
+    required super.username,
+    required super.email,
+    super.avatarUrl,
+    super.bio,
+    super.gender,
+    super.birthday,
+    super.isVerified = false,
+    String super.role = 'user',
+    String super.status = 'active',
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
