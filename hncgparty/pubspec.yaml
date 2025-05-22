@@ -42,6 +42,7 @@ dependencies:
   shared_preferences: ^2.2.2 # Local storage
   dartz: ^0.10.1
   flutter_flavorizr: ^2.1.2
+  lottie: ^3.3.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,6 +68,7 @@ flutter:
     - assets/logo/tiktok_logo.png
     - assets/logo/facebook_logo.webp
     - assets/logo/google_logo.png
+    - assets/animations/loading_hncg_party_ver6.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
@@ -99,3 +101,4 @@ flutter_launcher_icons:
    - "assets/images/bg-form-login.png"
    - "assets/images/logo-hncg-party-ver2.png"
    - "assets/images/start-party.png"
+   - "assets/animations/loading_hncg_party_ver6.json"

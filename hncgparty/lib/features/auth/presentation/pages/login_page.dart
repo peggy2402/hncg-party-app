@@ -28,6 +28,12 @@ class _LoginPageState extends State<LoginPage> {
             }
             if (state is AuthAuthenticated) {
               Navigator.pushReplacementNamed(context, '/home');
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Đăng nhập thành công!'),
+                  backgroundColor: Colors.green,
+                ),
+              );
             }
           },
           builder: (context, state) {

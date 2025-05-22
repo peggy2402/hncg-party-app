@@ -8,6 +8,8 @@ import 'package:hncgparty/features/auth/presentation/pages/forgot_password.dart'
 
 import 'package:hncgparty/injection_container.dart' as di;
 
+import 'features/auth/presentation/pages/splash_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
@@ -36,12 +38,13 @@ class MyApp extends StatelessWidget {
       ),
       // Định nghĩa routes thay vì dùng home
       routes: {
-        '/': (context) => LoginPage(),
+        'splash': (context) => SplashScreen(),
         '/signin_up': (context) => SignInPage(),
+        '/': (context) => LoginPage(),
         '/home': (context) => const HomePage(),
         '/forgot_password': (context) => const ForgotPassword(),
       },
-      initialRoute: '/',
+      initialRoute: 'splash',
       // Thêm navigation observer để debug (tuỳ chọn)
       navigatorObservers: [HeroController()],
     );
