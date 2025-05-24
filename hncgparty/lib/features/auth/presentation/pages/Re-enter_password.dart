@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../blocs/auth_bloc.dart';
 import 'package:hncgparty/features/auth/presentation/blocs/auth_state.dart';
 
-class LoginPage extends StatefulWidget {
+class Re_enter_Password extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _Enter_Password createState() => _Enter_Password();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final _identifierController = TextEditingController();
+class _Enter_Password extends State<Re_enter_Password> {
   final _passwordController = TextEditingController();
-  bool _isPasswordVisible = false;
+  final _rePasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
               );
             }
             if (state is AuthAuthenticated) {
-              Navigator.pushReplacementNamed(context, '/home');
+              // Navigator.pushReplacementNamed(context, '/home');
             }
           },
           builder: (context, state) {
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
+            padding: EdgeInsets.symmetric(horizontal: 35),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -73,8 +73,8 @@ class _LoginPageState extends State<LoginPage> {
                     color: Color(0xFFFFC0E2), // Light pink background
                     borderRadius: BorderRadius.circular(30),
                     border: Border.all(
-                      color: Colors.white,
-                      width: 6
+                        color: Colors.white,
+                        width: 6
                     ),
                     boxShadow: [
                       BoxShadow(
@@ -87,13 +87,40 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.all(20),
                   child: Column(
                     children: [
-                      // START PARTY text
-                      Image.asset(
-                        'assets/images/start-party.png',
-                        width: 400,
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.all(8),
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          onPressed: () => Navigator.pop(context,'/'),
+                        ),
                       ),
-                      SizedBox(height: 30),
 
+                      // START PARTY text
+                      SizedBox(height: 30),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'THAY ĐỔI MẬT KHẨU',
+                             style:GoogleFonts.montserrat(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w900,
+                              color: Color(0xFF3D004D), // tím đậm
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            'VUI LÒNG NHẬP MẬT KHẨU MỚI',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF3D004D),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
                       // Username Field
                       Container(
                         width: 300,
@@ -109,12 +136,12 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                         child: TextField(
-                          controller: _identifierController,
+                          controller: _passwordController,
                           decoration: InputDecoration(
-                            hintText: 'Username or Email',
+                            hintText: 'New passwork',
                             hintStyle: TextStyle(color: Colors.grey),
                             prefixIcon: Icon(
-                              Icons.person,
+                              Icons.password,
                               color: Color(0xFF3D165B),
                             ),
                             border: InputBorder.none,
@@ -122,9 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
-
-                      // Password Field
+                      SizedBox(height:20 ),
                       Container(
                         width: 300,
                         decoration: BoxDecoration(
@@ -139,33 +164,20 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                         child: TextField(
-                          controller: _passwordController,
-                          obscureText: !_isPasswordVisible,
+                          controller: _rePasswordController,
                           decoration: InputDecoration(
-                            hintText: 'Password',
+                            hintText: 'Re-enter password',
                             hintStyle: TextStyle(color: Colors.grey),
                             prefixIcon: Icon(
-                              Icons.lock,
+                              Icons.password,
                               color: Color(0xFF3D165B),
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                                color: Color(0xFF3D165B),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _isPasswordVisible = !_isPasswordVisible;
-                                });
-                              },
                             ),
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.symmetric(vertical: 15),
                           ),
                         ),
                       ),
-                      SizedBox(height: 30),
-
+                      SizedBox(height: 20),
                       // Login Button
                       Container(
                         width: 300,
@@ -180,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         child: ElevatedButton(
-                          onPressed: () => _handleLogin(context),
+                          onPressed: () => _navigator_rePassWord(context),
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
                             backgroundColor: Colors.transparent,
@@ -190,7 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           child: Text(
-                            'ĐĂNG NHẬP',
+                            'TIẾP TỤC',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -198,43 +210,6 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 20),
-
-                      // Forgot Password
-                      TextButton(
-                        onPressed: () => Navigator.pushNamed(context, '/repass_email'),
-                        child: Text(
-                          'Bạn quên mật khẩu ư?',
-                          style: TextStyle(
-                            color: Color(0xFF3D165B),
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-
-                      // Register Link
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Bạn chưa có tài khoản ? ',
-                            style: TextStyle(
-                              color: Color(0xFF3D165B),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(context, '/signin_up'),
-                            child: Text(
-                              'đăng ký',
-                              style: TextStyle(
-                                color: Color(0xFF3D165B),
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),
@@ -246,23 +221,30 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-  void _handleLogin(BuildContext context) {
-    final identifier = _identifierController.text.trim();
-    final password = _passwordController.text.trim();
-
-    if (identifier.isEmpty || password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Vui lòng điền đầy đủ thông tin'),
-          backgroundColor: Colors.orange,
-        ),
-      );
-      return;
-    }
-
-    context.read<AuthBloc>().add(
-      LoginRequested(identifier, password),
-    );
+  void _navigator_rePassWord(BuildContext context) {
+    final pasword = _passwordController.text;
+    final re_pasword = _rePasswordController.text;
+     if (re_pasword.isEmpty || pasword.isEmpty){
+       ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(
+           content: Text('Vui lòng điền đầy đủ thông tin'),
+           backgroundColor: Colors.orange,
+         ),
+       );
+       return;
+     }
+      else if(re_pasword== pasword) {
+          Navigator.pushNamed(context ,'/');
+          return;
+    } else{
+       ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(
+           content: Text('Nhập sai mật khẩu'),
+           backgroundColor: Colors.orange,
+         ),
+       );
+       return;
+     }
   }
 }
+

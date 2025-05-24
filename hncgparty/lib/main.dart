@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hncgparty/features/auth/presentation/blocs/auth_bloc.dart';
+import 'package:hncgparty/features/auth/presentation/pages/Re-enter_password.dart';
+import 'package:hncgparty/features/auth/presentation/pages/email_restarts_passwork.dart';
 import 'package:hncgparty/features/auth/presentation/pages/login_page.dart';
 import 'package:hncgparty/features/auth/presentation/pages/sigin_page.dart';
 import 'package:hncgparty/features/auth/presentation/pages/home_page.dart';
@@ -43,6 +45,8 @@ class MyApp extends StatelessWidget {
         '/signin_up': (context) => SignInPage(),
         '/home': (context) => const HomePage(),
         '/forgot_password': (context) => const ForgotPassword(),
+        '/repass_email' : (context) => EmailRestartsPasswork(),
+        '/re_Password' : (context) => Re_enter_Password()
       },
       initialRoute: 'splash',
       // Thêm navigation observer để debug (tuỳ chọn)
